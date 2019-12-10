@@ -1,5 +1,5 @@
 import { View, Image, Text, Dimensions } from "react-native";
-import ListView from 'deprecated-react-native-listview';
+import ListView from "deprecated-react-native-listview";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Task from "data.task";
@@ -83,7 +83,11 @@ export default class Masonry extends Component {
     const columnHeights = generateColumnHeights(props.columns);
     this.state = {
       dataSource: this.ds.cloneWithRows([]),
-      dimensions: {},
+      dimensions: {
+        width: Dimensions.get("window").width,
+        height: 0,
+        gutter: (Dimensions.get("window").width / 100) * this.props.spacing
+      },
       initialOrientation: true,
       _sortedData: [],
       _resolvedData: [],
